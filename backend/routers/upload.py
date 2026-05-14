@@ -5,16 +5,16 @@ from sqlalchemy import func
 from datetime import datetime
 from typing import List
 import pandas as pd
-import os
 import shutil
 
+from config import UPLOADS_DIR
 from models import get_db, Purchase, WorkHour, PartPrice
 from schemas.schemas import PurchaseCreate, WorkHourCreate, PartPriceCreate
 
 router = APIRouter(prefix="/api/upload", tags=["数据导入"])
 
-UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'uploads')
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+# 确保上传目录存在
+UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 @router.post("/purchase")
@@ -23,7 +23,7 @@ async def upload_purchase(file: UploadFile = File(...), db: Session = Depends(ge
     if not file.filename.endswith('.xlsx'):
         raise HTTPException(status_code=400, detail="仅支持.xlsx格式")
     
-    file_path = os.path.join(UPLOAD_DIR, f"purchase_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx")
+    file_path = UPLOADS_DIR / f"purchase_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx"
     
     with open(file_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
@@ -90,8 +90,8 @@ async def upload_purchase(file: UploadFile = File(...), db: Session = Depends(ge
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"导入失败: {str(e)}")
     finally:
-        if os.path.exists(file_path):
-            os.remove(file_path)
+        if file_path.exists():
+            file_path.unlink()
 
 
 @router.post("/work-hours")
@@ -100,7 +100,7 @@ async def upload_work_hours(file: UploadFile = File(...), db: Session = Depends(
     if not file.filename.endswith('.xlsx'):
         raise HTTPException(status_code=400, detail="仅支持.xlsx格式")
     
-    file_path = os.path.join(UPLOAD_DIR, f"workhours_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx")
+    file_path = UPLOADS_DIR / f"workhours_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx"
     
     with open(file_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
@@ -166,8 +166,8 @@ async def upload_work_hours(file: UploadFile = File(...), db: Session = Depends(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"导入失败: {str(e)}")
     finally:
-        if os.path.exists(file_path):
-            os.remove(file_path)
+        if file_path.exists():
+            file_path.unlink()
 
 
 @router.post("/part-prices")
@@ -176,7 +176,7 @@ async def upload_part_prices(file: UploadFile = File(...), db: Session = Depends
     if not file.filename.endswith('.xlsx'):
         raise HTTPException(status_code=400, detail="仅支持.xlsx格式")
     
-    file_path = os.path.join(UPLOAD_DIR, f"partprices_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx")
+    file_path = UPLOADS_DIR / f"partprices_{datetime.now().strftime('%Y%m%d%H%M%S')}.xlsx"
     
     with open(file_path, "wb") as f:
         shutil.copyfileobj(file.file, f)
@@ -246,5 +246,5 @@ async def upload_part_prices(file: UploadFile = File(...), db: Session = Depends
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"导入失败: {str(e)}")
     finally:
-        if os.path.exists(file_path):
-            os.remove(file_path)
+        if file_path.exists():
+            file_path.unlink()

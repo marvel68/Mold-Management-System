@@ -4,8 +4,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-import os
 
+from config import UPLOADS_DIR, ATTACHMENT_DIR, THUMBNAIL_DIR
 from models.database import engine, Base
 from models.models import Purchase, WorkHour, PartPrice, Mold, Supplier, Attachment, WeekDefinition
 
@@ -40,9 +40,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-os.makedirs("/app/mold-factory/uploads/attachments", exist_ok=True)
-os.makedirs("/app/mold-factory/uploads/attachments/thumbnails", exist_ok=True)
-app.mount("/uploads", StaticFiles(directory="/app/mold-factory/uploads"), name="uploads")
+# 挂载静态文件目录（使用跨平台路径）
+app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")
 
 # 周透视必须在purchases之前注册，避免 /{purchase_id} 抢匹配
 app.include_router(weekly_pivot_router)

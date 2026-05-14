@@ -6,20 +6,13 @@ from sqlalchemy import func
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import datetime
-import os
 import uuid
 import shutil
 
+from config import ATTACHMENT_DIR, THUMBNAIL_DIR, get_attachment_relative_path, get_thumbnail_relative_path, resolve_upload_path
 from models import get_db, Attachment
-# BaseResponse not needed
 
 router = APIRouter(prefix="/api/attachments", tags=["附件管理"])
-
-# 附件存储目录
-ATTACHMENT_DIR = "/app/mold-factory/uploads/attachments"
-THUMBNAIL_DIR = "/app/mold-factory/uploads/attachments/thumbnails"
-os.makedirs(ATTACHMENT_DIR, exist_ok=True)
-os.makedirs(THUMBNAIL_DIR, exist_ok=True)
 
 # 支持的图片类型
 IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'}
@@ -51,7 +44,7 @@ class AttachmentListResponse(BaseModel):
 
 def get_file_extension(filename: str) -> str:
     """获取文件扩展名"""
-    return os.path.splitext(filename)[1].lower()
+    return filename[filename.rfind('.'):].lower() if '.' in filename else ''
 
 
 def is_image(filename: str) -> bool:
@@ -86,27 +79,30 @@ async def upload_attachment(
     # 生成唯一文件名
     ext = get_file_extension(file.filename)
     unique_filename = f"{uuid.uuid4().hex}{ext}"
-    file_path = os.path.join(ATTACHMENT_DIR, unique_filename)
+    
+    # 使用跨平台路径
+    file_path = ATTACHMENT_DIR / unique_filename
     
     # 保存文件
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
     # 获取文件大小
-    file_size = os.path.getsize(file_path)
+    file_size = file_path.stat().st_size
     
     # 生成缩略图（如果是图片）
     thumbnail_path = None
     if is_image(file.filename):
         thumb_filename = f"thumb_{unique_filename}"
-        thumbnail_path = os.path.join(THUMBNAIL_DIR, thumb_filename)
-        generate_thumbnail(file_path, thumbnail_path)
-        thumbnail_path = thumbnail_path.replace("/app/mold-factory/uploads", "/uploads")
+        thumbnail_full_path = THUMBNAIL_DIR / thumb_filename
+        generate_thumbnail(str(file_path), str(thumbnail_full_path))
+        # 保存相对路径到数据库
+        thumbnail_path = get_thumbnail_relative_path(thumb_filename)
     
     # 保存到数据库
     attachment = Attachment(
         file_name=file.filename,
-        file_path=file_path.replace("/app/mold-factory/uploads", "/uploads"),
+        file_path=get_attachment_relative_path(unique_filename),
         file_type=get_file_extension(file.filename).lstrip('.'),
         file_size=file_size,
         category=category,
@@ -165,14 +161,14 @@ def download_attachment(attachment_id: int, db: Session = Depends(get_db)):
     if not attachment:
         raise HTTPException(status_code=404, detail="附件不存在")
     
-    # 转换相对路径为绝对路径
-    file_path = attachment.file_path.replace("/uploads", "/app/mold-factory/uploads")
+    # 转换为绝对路径
+    file_path = resolve_upload_path(attachment.file_path)
     
-    if not os.path.exists(file_path):
+    if not file_path.exists():
         raise HTTPException(status_code=404, detail="文件不存在")
     
     return FileResponse(
-        path=file_path,
+        path=str(file_path),
         filename=attachment.file_name,
         media_type="application/octet-stream"
     )
@@ -185,14 +181,14 @@ def preview_attachment(attachment_id: int, db: Session = Depends(get_db)):
     if not attachment:
         raise HTTPException(status_code=404, detail="附件不存在")
     
-    file_path = attachment.file_path.replace("/uploads", "/app/mold-factory/uploads")
+    file_path = resolve_upload_path(attachment.file_path)
     
-    if not os.path.exists(file_path):
+    if not file_path.exists():
         raise HTTPException(status_code=404, detail="文件不存在")
     
     # 图片类附件直接返回
     if is_image(attachment.file_name):
-        return FileResponse(path=file_path, media_type=f"image/{attachment.file_type}")
+        return FileResponse(path=str(file_path), media_type=f"image/{attachment.file_type}")
     
     # PDF返回iframe预览信息
     if attachment.file_type == 'pdf':
@@ -218,15 +214,15 @@ def delete_attachment(attachment_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="附件不存在")
     
     # 删除物理文件
-    file_path = attachment.file_path.replace("/uploads", "/app/mold-factory/uploads")
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    file_path = resolve_upload_path(attachment.file_path)
+    if file_path.exists():
+        file_path.unlink()
     
     # 删除缩略图
     if attachment.thumbnail_path:
-        thumb_path = attachment.thumbnail_path.replace("/uploads", "/app/mold-factory/uploads")
-        if os.path.exists(thumb_path):
-            os.remove(thumb_path)
+        thumb_path = resolve_upload_path(attachment.thumbnail_path)
+        if thumb_path.exists():
+            thumb_path.unlink()
     
     db.delete(attachment)
     db.commit()
