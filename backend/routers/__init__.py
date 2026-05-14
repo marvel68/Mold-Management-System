@@ -5,3 +5,6 @@ from routers.molds import router as molds_router
 from routers.dashboard import router as dashboard_router
 from routers.ai_predict import router as ai_predict_router
 from routers.upload import router as upload_router
+from routers.suppliers import router as suppliers_router
+from routers.attachments import router as attachments_router
+from routers.weekly_pivot import router as weekly_pivot_router

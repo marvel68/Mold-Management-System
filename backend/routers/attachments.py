@@ -11,7 +11,7 @@ import uuid
 import shutil
 
 from models import get_db, Attachment
-from schemas.schemas import BaseResponse
+# BaseResponse not needed
 
 router = APIRouter(prefix="/api/attachments", tags=["附件管理"])
 

@@ -1,4 +1,5 @@
 """供应商管理API"""
+from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import func, distinct
@@ -6,7 +7,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 from models import get_db, Supplier, Purchase, Attachment
-from schemas.schemas import BaseResponse
+# BaseResponse not needed
 
 router = APIRouter(prefix="/api/suppliers", tags=["供应商管理"])
 
@@ -58,7 +59,7 @@ class AttachmentResponse(BaseModel):
     thumbnail_path: Optional[str] = None
     version: Optional[int] = 1
     upload_user: Optional[str] = None
-    created_at: Optional[str] = None
+    created_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True
@@ -66,8 +67,8 @@ class AttachmentResponse(BaseModel):
 
 class SupplierResponse(SupplierBase):
     id: int
-    created_at: Optional[str] = None
-    updated_at: Optional[str] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
     attachments: List[AttachmentResponse] = []
 
     class Config:
