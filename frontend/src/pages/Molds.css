@@ -1,0 +1,16 @@
+.cost-card {
+  text-align: center;
+}
+
+.cost-card.total {
+  border-color: rgba(0, 242, 254, 0.3) !important;
+  background: rgba(0, 242, 254, 0.05) !important;
+}
+
+.empty-data {
+  padding: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}

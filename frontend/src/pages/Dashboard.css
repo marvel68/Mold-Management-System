@@ -1,0 +1,218 @@
+.dashboard {
+  padding: 24px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* 科幻卡片 */
+.scifi-card {
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 24px;
+}
+
+.card-title {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.card-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.card-trend {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+}
+
+/* AI预测卡片 */
+.ai-card {
+  padding: 20px;
+  border: 1px solid rgba(240, 147, 251, 0.2);
+}
+
+.ai-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ai-icon {
+  font-size: 20px;
+}
+
+.ai-title {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ai-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f093fb;
+  margin-bottom: 12px;
+}
+
+.ai-confidence {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 8px;
+}
+
+.confidence-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f093fb, #f5576c);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.ai-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* 图表卡片 */
+.chart-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(0, 242, 254, 0.15) !important;
+}
+
+.chart-card .ant-card-head {
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.chart-card .ant-card-body {
+  padding: 16px;
+}
+
+.empty-chart {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* 分类列表 */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category-name {
+  width: 80px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.category-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.category-value {
+  width: 70px;
+  text-align: right;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'Orbitron', monospace;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .card-value {
+    font-size: 24px;
+  }
+}

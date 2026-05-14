@@ -1,0 +1,232 @@
+.suppliers {
+  padding: 24px;
+}
+
+/* 统计卡片 */
+.suppliers .stats-row {
+  margin-bottom: 20px;
+}
+
+.suppliers .stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  min-height: 90px;
+}
+
+.suppliers .stat-card.stat-cyan {
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.suppliers .stat-card.stat-blue {
+  border-color: rgba(79, 172, 254, 0.3);
+}
+
+.suppliers .stat-card.stat-green {
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+.suppliers .stat-card.stat-orange {
+  border-color: rgba(245, 87, 108, 0.3);
+}
+
+.suppliers .stat-icon {
+  font-size: 32px;
+}
+
+.suppliers .stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.suppliers .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.suppliers .stat-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* 列表卡片 */
+.suppliers .list-card {
+  min-height: 500px;
+}
+
+.suppliers .list-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* 选中行样式 */
+.suppliers .selected-row {
+  background: rgba(0, 242, 254, 0.15) !important;
+}
+
+.suppliers .selected-row td {
+  color: #00f2fe !important;
+}
+
+/* 详情卡片 */
+.suppliers .detail-card {
+  min-height: 500px;
+}
+
+.suppliers .detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.suppliers .detail-icon {
+  font-size: 24px;
+}
+
+.suppliers .detail-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* 描述列表 */
+.suppliers .supplier-descriptions .ant-descriptions-item-label {
+  color: rgba(255, 255, 255, 0.5) !important;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.suppliers .supplier-descriptions .ant-descriptions-item-content {
+  color: rgba(255, 255, 255, 0.85) !important;
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 附件区域 */
+.suppliers .attachments-section {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.suppliers .attachments-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.suppliers .attachments-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.suppliers .attachments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.suppliers .empty-attachments {
+  padding: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+
+/* 弹窗样式 */
+.suppliers .supplier-modal .ant-modal-content {
+  background: #0d1230 !important;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.suppliers .supplier-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.suppliers .supplier-modal .ant-modal-title {
+  color: #fff;
+}
+
+.suppliers .supplier-modal .ant-modal-footer {
+  border-top: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.suppliers .supplier-form .ant-form-item-label > label {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.suppliers .supplier-form .ant-input,
+.suppliers .supplier-form .ant-select-selector,
+.suppliers .supplier-form .ant-input-textarea textarea {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+.suppliers .supplier-form .ant-input:focus,
+.suppliers .supplier-form .ant-select-focused .ant-select-selector {
+  border-color: #00f2fe !important;
+  box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2) !important;
+}
+
+/* 表格样式覆盖 */
+.suppliers .list-card .ant-table {
+  background: transparent !important;
+}
+
+.suppliers .list-card .ant-table-thead > tr > th {
+  background: rgba(0, 242, 254, 0.1) !important;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.2) !important;
+  color: #00f2fe !important;
+}
+
+.suppliers .list-card .ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.suppliers .list-card .ant-table-tbody > tr:hover > td {
+  background: rgba(0, 242, 254, 0.05) !important;
+}
+
+.suppliers .list-card .ant-pagination-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.suppliers .list-card .ant-pagination-item a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.suppliers .list-card .ant-pagination-item-active {
+  border-color: #00f2fe !important;
+}
+
+.suppliers .list-card .ant-pagination-item-active a {
+  color: #00f2fe !important;
+}
+
+/* 详情卡片表格样式 */
+.suppliers .detail-card .ant-descriptions-view {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .suppliers .stat-value {
+    font-size: 22px;
+  }
+  
+  .suppliers .stat-icon {
+    font-size: 24px;
+  }
+}

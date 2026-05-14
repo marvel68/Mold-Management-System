@@ -1,0 +1,252 @@
+/* Tab样式 */
+.part-prices-tabs .ant-tabs-nav {
+  margin-bottom: 16px;
+}
+
+.part-prices-tabs .ant-tabs-tab {
+  color: rgba(255, 255, 255, 0.65) !important;
+  padding: 8px 0 !important;
+}
+
+.part-prices-tabs .ant-tabs-tab:hover {
+  color: #00f2fe !important;
+}
+
+.part-prices-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #00f2fe !important;
+}
+
+.part-prices-tabs .ant-tabs-ink-bar {
+  background: #00f2fe !important;
+}
+
+.part-prices-tabs .ant-tabs-nav::before {
+  border-bottom-color: rgba(0, 242, 254, 0.2) !important;
+}
+
+/* 分类卡片 */
+.category-card {
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(0, 242, 254, 0.1) !important;
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-tag {
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.category-tag:hover {
+  background: rgba(0, 242, 254, 0.2) !important;
+  border-color: #00f2fe !important;
+}
+
+/* 详情样式 */
+.part-detail .process-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.process-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+.process-name {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.process-value {
+  font-family: 'Orbitron', monospace;
+  color: #4facfe;
+}
+
+/* 计算弹窗 */
+.calc-form {
+  padding: 16px 0;
+}
+
+.calc-field {
+  margin-bottom: 16px;
+}
+
+.calc-field label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+}
+
+.calc-result {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(0, 242, 254, 0.05);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 8px;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.result-size {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.result-match {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 16px;
+}
+
+.result-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 242, 254, 0.1);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.result-price .font-orbitron {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00f2fe;
+}
+
+/* Modal样式 */
+.detail-modal .ant-modal-content,
+.calc-modal .ant-modal-content {
+  background: #0d1230 !important;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.detail-modal .ant-modal-header,
+.calc-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.detail-modal .ant-modal-title,
+.calc-modal .ant-modal-title {
+  color: #fff;
+}
+
+/* 供应商管理Tab - 跳转页面 */
+.external-page-redirect {
+  padding: 20px;
+}
+
+.redirect-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.redirect-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.redirect-icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.redirect-content h3 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.redirect-content p {
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 24px;
+}
+
+/* 附件管理Tab */
+.attachment-filters {
+  margin-bottom: 16px;
+}
+
+.attachment-uploader {
+  margin-bottom: 20px;
+}
+
+.attachment-uploader .ant-upload-drag {
+  background: rgba(0, 242, 254, 0.05) !important;
+  border-color: rgba(0, 242, 254, 0.3) !important;
+}
+
+.attachment-uploader .ant-upload-drag:hover {
+  border-color: #00f2fe !important;
+}
+
+.attachment-uploader .ant-upload-drag-icon {
+  color: #00f2fe !important;
+}
+
+.attachment-uploader .ant-upload-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.attachment-uploader .ant-upload-hint {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.attachment-list-container {
+  min-height: 200px;
+}
+
+.attachment-loading,
+.attachment-empty {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.attachment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* 描述列表 */
+.detail-modal .ant-descriptions-item-label {
+  background: rgba(0, 242, 254, 0.05) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.detail-modal .ant-descriptions-item-content {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.detail-modal .ant-descriptions-view {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.detail-modal .ant-descriptions-bordered .ant-descriptions-item {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}

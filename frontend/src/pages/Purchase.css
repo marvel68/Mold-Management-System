@@ -1,0 +1,95 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.stats-row {
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(0, 242, 254, 0.1) !important;
+}
+
+.stat-card .ant-statistic-title {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.stat-card .ant-statistic-content {
+  color: #00f2fe;
+}
+
+.filter-card {
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.table-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(0, 242, 254, 0.1) !important;
+}
+
+.table-card .ant-table {
+  background: transparent !important;
+}
+
+.table-card .ant-table-thead > tr > th {
+  background: rgba(0, 242, 254, 0.08) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.15) !important;
+}
+
+.table-card .ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.table-card .ant-table-tbody > tr:hover > td {
+  background: rgba(0, 242, 254, 0.05) !important;
+}
+
+.table-card .ant-pagination {
+  margin-top: 16px;
+}
+
+.table-card .ant-pagination-item {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(0, 242, 254, 0.2) !important;
+}
+
+.table-card .ant-pagination-item a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.edit-modal .ant-modal-content {
+  background: #0d1230 !important;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+.edit-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+}
+
+.edit-modal .ant-modal-title {
+  color: #fff;
+}
+
+.edit-modal .ant-form-item-label > label {
+  color: rgba(255, 255, 255, 0.75);
+}
