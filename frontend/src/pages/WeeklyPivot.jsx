@@ -56,8 +56,8 @@ function WeeklyPivot() {
       
       const res = await weeklyPivotAPI.getData(params)
       
-      if (res.data) {
-        setData(res.data)
+      if (res) {
+        setData(res)
         setSuppliers(res.suppliers || extractSuppliers(res.data))
         setWeeks(res.weeks || generateWeeks(year, month))
       }

@@ -51,7 +51,7 @@ function Suppliers() {
       if (filterType) params.type = filterType
       
       const res = await supplierAPI.list(params)
-      setData(res)
+      setData(res.items || res)
     } catch (err) {
       message.error('加载数据失败')
     } finally {
@@ -86,9 +86,9 @@ function Suppliers() {
       name: record.name,
       type: record.type,
       category: record.category,
-      contact: record.contact,
-      phone: record.phone,
-      email: record.email,
+      contact_person: record.contact_person,
+      contact_phone: record.contact_phone,
+      contact_email: record.contact_email,
       address: record.address,
       bank_name: record.bank_name,
       bank_account: record.bank_account,
@@ -376,13 +376,13 @@ function Suppliers() {
                   {selectedSupplier.category || '-'}
                 </Descriptions.Item>
                 <Descriptions.Item label="联系人" span={1}>
-                  <Space><ProfileOutlined /> {selectedSupplier.contact || '-'}</Space>
+                  <Space><ProfileOutlined /> {selectedSupplier.contact_person || '-'}</Space>
                 </Descriptions.Item>
                 <Descriptions.Item label="电话" span={1}>
-                  <Space><PhoneOutlined /> {selectedSupplier.phone || '-'}</Space>
+                  <Space><PhoneOutlined /> {selectedSupplier.contact_phone || '-'}</Space>
                 </Descriptions.Item>
                 <Descriptions.Item label="邮箱" span={2}>
-                  {selectedSupplier.email || '-'}
+                  {selectedSupplier.contact_email || '-'}
                 </Descriptions.Item>
                 <Descriptions.Item label="地址" span={2}>
                   {selectedSupplier.address || '-'}
@@ -479,12 +479,12 @@ function Suppliers() {
           
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="contact" label="联系人">
+              <Form.Item name="contact_person" label="联系人">
                 <Input placeholder="联系人姓名" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="phone" label="电话">
+              <Form.Item name="contact_phone" label="电话">
                 <Input placeholder="联系电话" />
               </Form.Item>
             </Col>
@@ -492,7 +492,7 @@ function Suppliers() {
           
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="email" label="邮箱">
+              <Form.Item name="contact_email" label="邮箱">
                 <Input placeholder="电子邮箱" />
               </Form.Item>
             </Col>

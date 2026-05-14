@@ -62,7 +62,7 @@ function PartPrices() {
       const params = {}
       if (attachmentCategory) params.category = attachmentCategory
       const res = await attachmentAPI.list(params)
-      setAttachments(res || [])
+      setAttachments(res.items || res || [])
     } catch (err) {
       message.error('加载附件失败')
     } finally {
